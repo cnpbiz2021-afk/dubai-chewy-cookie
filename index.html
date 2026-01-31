@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>두바이 쫀득 쿠키(두쫀쿠) 서울 지도</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splash" class="splash-screen">
+        <div class="splash-content">
+            <img src="hero.jpg" alt="Dubai Chewy Cookie" class="splash-logo">
+            <h1 class="splash-title">Dubai Chewy Map</h1>
+            <p class="splash-subtitle">서울 두쫀쿠 성지를 찾아서</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <main class="app-container">
+        <!-- Notice Banner -->
+        <div class="notice-banner">
+            <p>💡 이 지도에는 쿠키/베이커리·디저트류를 판매하는 대표 카페/매장으로 구성되어 있습니다. <strong>방문 전 SNS(인스타그램/블로그) 또는 전화로 메뉴 확인을
+                    권장합니다.</strong></p>
+        </div>
+
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="search-container">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="store-search" placeholder="성지 이름 또는 지역 검색...">
+            </div>
+        </header>
+
+        <!-- Main Body -->
+        <section class="main-layout">
+            <!-- Nearby Sidebar (Visible when relevant) -->
+            <aside id="nearby-sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <h3>서울 두쫀쿠 성지 리스트</h3>
+                    <span id="nearby-count">총 18곳 성지</span>
+                </div>
+                <div id="nearby-list" class="store-list">
+                    <p class="empty-msg">주변에 매장이 없거나<br>위치 권한이 필요합니다.</p>
+                </div>
+            </aside>
+
+            <!-- Map -->
+            <div id="map-container">
+                <div id="map"></div>
+                <button id="recenter-btn" title="내 위치로 이동">
+                    <i data-lucide="crosshair"></i>
+                </button>
+                <button id="toggle-sidebar" class="mobile-only-btn">
+                    <i data-lucide="list"></i>
+                    주변 목록
+                </button>
+            </div>
+        </section>
+
+        <!-- Bottom Sheet (Store Info) -->
+        <div id="bottom-sheet" class="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-content">
+                <div class="store-details" id="store-details">
+                    <p class="placeholder-text">지도의 마커를 클릭하여<br>매장 상세 정보를 확인하세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Connection Bar -->
+        <nav class="bottom-nav">
+            <a href="tel:02-1234-5678" id="main-call-btn" class="nav-call-btn">
+                <i data-lucide="phone"></i>
+                <span>매장 전화 연결</span>
+            </a>
+        </nav>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
