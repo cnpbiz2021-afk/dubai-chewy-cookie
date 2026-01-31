@@ -230,7 +230,7 @@ document.getElementById('toggle-sidebar').addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
 
-// Close sheet on map click
+// Close sheet and sidebar on map click
 if (map) {
     map.on('click', () => {
         bottomSheet.classList.remove('open');

@@ -521,6 +521,18 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    #recenter-btn {
+        bottom: 140px;
+        /* Moved up to clear bottom bar */
+    }
+
+    .mobile-only-btn {
+        display: flex;
+        align-items: center;
+        bottom: 140px;
+        /* Moved up to clear bottom bar */
+    }
+
     .sidebar {
         position: absolute;
         left: 0;
