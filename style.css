@@ -218,16 +218,38 @@ body {
     border-bottom: 1px solid #EEE;
 }
 
+.sidebar-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
 .sidebar-header h3 {
     font-size: 1.1rem;
     color: var(--chocolate);
-    margin-bottom: 4px;
+    margin: 0;
 }
 
-#nearby-count {
-    font-size: 0.85rem;
-    color: var(--pistachio);
-    font-weight: 700;
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--chocolate);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.close-btn:active {
+    transform: scale(0.9);
+}
+
+.close-btn i {
+    width: 20px;
+    height: 20px;
 }
 
 .store-list {

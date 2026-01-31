@@ -251,5 +251,26 @@ document.getElementById('toggle-sidebar').addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
 
+// Close Sidebar via Button
+document.getElementById('close-sidebar-btn').addEventListener('click', () => {
+    sidebar.classList.remove('open');
+});
+
+// Function to close all UI
+function closeAllUI() {
+    closeDetails();
+    if (sidebar) sidebar.classList.remove('open');
+}
+
+// Map Click to close UI
+if (map) {
+    map.on('click', closeAllUI);
+    map.on('dragstart', closeAllUI);
+}
+
+// Touch event for the map element specifically
+document.getElementById('map').addEventListener('touchstart', closeAllUI, { passive: true });
+document.getElementById('map').addEventListener('mousedown', closeAllUI);
+
 // Initialize
 window.onload = initMap;
