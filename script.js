@@ -124,10 +124,16 @@ const bottomSheet = document.getElementById('bottom-sheet');
 const storeDetails = document.getElementById('store-details');
 
 function showStoreDetails(store) {
+    const bottomNav = document.querySelector('.bottom-nav');
     const callBtn = document.getElementById('main-call-btn');
+
     if (callBtn && store.phone) {
         callBtn.href = `tel:${store.phone}`;
         callBtn.querySelector('span').innerText = `${store.name} 전화 연결`;
+    }
+
+    if (bottomNav) {
+        bottomNav.classList.add('active'); // Show phone bar
     }
 
     storeDetails.innerHTML = `
@@ -154,13 +160,18 @@ function showStoreDetails(store) {
     bottomSheet.classList.add('open');
 }
 
-// Close bottom sheet when clicked
+// Close bottom sheet and nav when clicked
 bottomSheet.addEventListener('click', (e) => {
     // If the click is on the address button or link, let it happen, otherwise close
     if (!e.target.closest('.btn-action')) {
-        bottomSheet.classList.remove('open');
+        closeDetails();
     }
 });
+
+function closeDetails() {
+    bottomSheet.classList.remove('open');
+    document.querySelector('.bottom-nav').classList.remove('active');
+}
 
 // --- Filtering Logic ---
 // No longer needed: btn-all, btn-nearby, btn-premium, btn-value listeners
@@ -230,12 +241,15 @@ document.getElementById('toggle-sidebar').addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
 
-// Close sheet and sidebar on map click
+// Close sheet, nav and sidebar on map interaction
 if (map) {
-    map.on('click', () => {
-        bottomSheet.classList.remove('open');
+    const closeAllUI = () => {
+        closeDetails();
         sidebar.classList.remove('open');
-    });
+    };
+
+    map.on('click', closeAllUI);
+    map.on('movestart', closeAllUI); // Also close when user starts moving the map
 }
 
 // Initialize

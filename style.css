@@ -480,6 +480,14 @@ body {
     border-top: 1px solid #EEE;
     padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
     z-index: 3000;
+    transform: translateY(100%);
+    /* Hidden by default */
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bottom-nav.active {
+    transform: translateY(0);
+    /* Shown when a store is selected */
 }
 
 .nav-call-btn {
