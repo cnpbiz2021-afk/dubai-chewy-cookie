@@ -99,6 +99,16 @@ function initMap() {
             updateNearbyList(); // Show all stores in sidebar on start
         }, 800);
     }, 2000);
+
+    // Close UI on map interaction (Move inside initMap to ensure 'map' is defined)
+    const closeAllUI = () => {
+        closeDetails();
+        if (sidebar) sidebar.classList.remove('open');
+    };
+
+    map.on('click', closeAllUI);
+    map.on('movestart', closeAllUI);
+    map.on('dragstart', closeAllUI);
 }
 
 // --- Render Markers ---
@@ -240,27 +250,6 @@ window.focusStore = focusStore;
 document.getElementById('toggle-sidebar').addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
-
-// function to close all UI components
-function closeAllUI() {
-    closeDetails();
-    if (sidebar) sidebar.classList.remove('open');
-}
-
-// Close sheet, nav and sidebar on map interaction
-if (map) {
-    map.on('click', closeAllUI);
-    map.on('dragstart', closeAllUI);
-    map.on('movestart', closeAllUI);
-}
-
-// Direct DOM listener for more reliable touch detection on map container
-document.getElementById('map').addEventListener('touchstart', (e) => {
-    // Only close if it's a direct touch on the map, not on markers or UI
-    if (e.target.id === 'map' || e.target.classList.contains('leaflet-container')) {
-        closeAllUI();
-    }
-}, { passive: true });
 
 // Initialize
 window.onload = initMap;
