@@ -241,16 +241,26 @@ document.getElementById('toggle-sidebar').addEventListener('click', () => {
     sidebar.classList.toggle('open');
 });
 
+// function to close all UI components
+function closeAllUI() {
+    closeDetails();
+    if (sidebar) sidebar.classList.remove('open');
+}
+
 // Close sheet, nav and sidebar on map interaction
 if (map) {
-    const closeAllUI = () => {
-        closeDetails();
-        sidebar.classList.remove('open');
-    };
-
     map.on('click', closeAllUI);
-    map.on('movestart', closeAllUI); // Also close when user starts moving the map
+    map.on('dragstart', closeAllUI);
+    map.on('movestart', closeAllUI);
 }
+
+// Direct DOM listener for more reliable touch detection on map container
+document.getElementById('map').addEventListener('touchstart', (e) => {
+    // Only close if it's a direct touch on the map, not on markers or UI
+    if (e.target.id === 'map' || e.target.classList.contains('leaflet-container')) {
+        closeAllUI();
+    }
+}, { passive: true });
 
 // Initialize
 window.onload = initMap;
